@@ -6,7 +6,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import runners.Runner;
 import webdriver.WebDriverManager;
@@ -15,9 +14,6 @@ public class Steps extends Runner {
     @Before
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        WebDriverManager.setWebDriver(new ChromeDriver(chromeOptions));
     }
 
     @Then("^Browser should be closed$")
@@ -27,6 +23,7 @@ public class Steps extends Runner {
 
     @Given("^Open chrome browser and open google page$")
     public void openChromeBrowserAndOpenGooglePage() {
+        WebDriverManager.setWebDriver(new ChromeDriver());
         WebDriverManager.getDriver().manage().window().maximize();
         WebDriverManager.getDriver().get("http://www.google.com");
     }

@@ -30,6 +30,9 @@ public class Runner extends AbstractTestNGCucumberTests {
                     + new SimpleDateFormat("MM-dd-yyyy_HH-ss").format(new GregorianCalendar().getTime()) + ".png";
             File failureImageFile = new File("target/screenshots/" + failureImageFileName);
             FileUtils.copyFile(imageFile, failureImageFile);
+
+            WebDriverManager.getDriver().quit();
+            WebDriverManager.setWebDriver(null);
         }
     }
 }
